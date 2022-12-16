@@ -3,32 +3,33 @@
 
 using namespace std;
 
-template <class t> class Cell{
+template <class T>
+class Cell{
     
     private:
-        t content;
-        Cell<t> *next;
+        T content;
+        Cell<T> *next;
 
     public:
-        Cell(t cont, Cell<t> nextcell);
+        Cell(T cont, Cell<T> nextcell);
 
         Cell();
 
-        Cell(t cont);
+        Cell(T cont);
 
         ~Cell();
 
-        t getContent();
+        T getContent();
 
-        void setContent(t cont);
+        void setContent(T cont);
 
-        Cell<t> getNext();
+        Cell<T> getNext();
 
-        void setNext(Cell<t> nextcell);
+        void setNext(Cell<T> nextcell);
 
-        operator std::string() const {return std::to_string(content);}
+        operator std::string() const;
 
-        bool equal(Cell<t> other);
+        bool equal(Cell<T> other);
 
 };
 
