@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include "cell.h"
 using namespace std;
 
 template <class t> class Cell{
@@ -49,14 +49,3 @@ template <class t> class Cell{
     }
 
 };
-
-int main() {//gcc -c -Wall -Wextra cell.cpp && g++ cell.o -lm -o cell && ./cell
-    Cell <int> k(3);
-    std::cout << k.operator std::string() << std::endl;
-    k.setContent(2);
-    std::cout << k.operator std::string() << std::endl;
-    Cell <int> l(12);
-    k.setNext(l);
-    std::cout << k.getNext().operator std::string() << std::endl;
-    return 0;
-}
