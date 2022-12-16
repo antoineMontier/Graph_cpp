@@ -44,6 +44,10 @@ template <class t> class Cell{
         return std::to_string(content);
     }
 
+    bool equal(Cell<t> other){
+        return content == other.content && next == other.next;
+    }
+
 };
 
 int main() {//gcc -c -Wall -Wextra cell.cpp && g++ cell.o -lm -o cell && ./cell
