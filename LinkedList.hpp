@@ -24,6 +24,8 @@ class LinkedList{
 
         void push(T content);
 
+        T pop();
+
 
         const string toString() const;
 

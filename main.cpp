@@ -13,5 +13,20 @@ int main(){
     list.push(10);
 
     std::cout << list.toString() << std::endl;
+
+    std::cout << list.pop() << std::endl;
+    std::cout << list.toString() << std::endl;
+
+    std::cout << list.pop() << std::endl;
+    std::cout << list.toString() << std::endl;
+
+    std::cout << list.pop() << std::endl;
+    std::cout << list.toString() << std::endl;
+    
+    std::cout << list.pop() << std::endl;
+    std::cout << list.toString() << std::endl;
+
+    std::cout << list.pop() << std::endl;
+    std::cout << list.toString() << std::endl;
     return 0;
 }

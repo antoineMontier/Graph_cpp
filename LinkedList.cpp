@@ -7,10 +7,22 @@ LinkedList<T>::LinkedList(){
     tail = nullptr;
 }
 
-template <class T>
-LinkedList<T>::~LinkedList(){
-    free(head);
-    free(tail);
+template <typename T>
+LinkedList<T>::~LinkedList() {
+    if(head == tail){
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+    }else{
+        if(head != nullptr){
+            delete head;
+            head = nullptr;
+        }
+        if(tail!= nullptr){
+            delete tail;
+            tail = nullptr;
+        }
+    }
 }
 
 template <class T>
@@ -24,7 +36,6 @@ LinkedList<T>::LinkedList(T content){
 }
 
 template <class T>
-
 const string LinkedList<T>::toString() const{
     if(head == nullptr){
         return "[-]";
@@ -76,5 +87,21 @@ void LinkedList<T>::push(T content){
         c->setNext(head);
         //std::cout<<"3rd ended"<<endl;
         head = c;
+    }
+}
+
+template <class T>
+T LinkedList<T>::pop(){
+    if(head == nullptr)
+        throw std::invalid_argument("empty list cannot be popped");
+    if(head == tail){
+        T result = head->getContent();
+        head = nullptr;
+        tail = nullptr;
+        return result;
+    }else{
+        T result = head->getContent();
+        head = head->getNextPtr();
+        return result;
     }
 }
