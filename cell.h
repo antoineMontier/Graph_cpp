@@ -1,3 +1,7 @@
+#include <iostream>
+#include <sstream>
+#include <iomanip>
+
 #ifndef CELL_H
 #define CELL_H
 
@@ -19,17 +23,17 @@ class Cell{
 
         ~Cell();
 
-        T getContent();
+        T getContent() const;
 
         void setContent(T cont);
 
-        Cell<T> getNext();
+        Cell<T> getNext() const;
 
         void setNext(Cell<T> nextcell);
 
-        operator std::string() const;
+        bool equal(Cell<T> other) const;
 
-        bool equal(Cell<T> other);
+        const string toString() const;
 
 };
 

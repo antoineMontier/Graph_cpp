@@ -24,7 +24,7 @@ all: $(OBJ)
 # standart rule to make a .o file from a .c file
 build/%.o: %.cpp
 	@mkdir -p build
-	$(CC) $(CFLAGS) -o $@ -cpp $<
+	$(CC) -c $(CFLAGS) -o $@ -cpp $<
 
 # standart rule to clean
 clean:

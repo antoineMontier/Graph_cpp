@@ -1,4 +1,3 @@
-#include <iostream>
 #include "cell.h"
 using namespace std;
 
@@ -11,11 +10,8 @@ Cell<T>::Cell(T contenu, Cell<T> nextcell){
 
 
 template <class T>
+Cell<T>::~Cell(){}
 
-Cell<T>::~Cell(){
-    delete this->content;
-    delete this->next;
-}
 
 template <class T>
 
@@ -32,7 +28,7 @@ Cell<T>::Cell(T cont){
 template <class T>
 
 
-T Cell<T>::getContent(){
+T Cell<T>::getContent() const{
     return content;
 }
 template <class T>
@@ -42,7 +38,7 @@ void Cell<T>::setContent(T cont){
 }
 template <class T>
 
-Cell<T> Cell<T>::getNext(){
+Cell<T> Cell<T>::getNext() const{
     return *next;
 }
 template <class T>
@@ -50,14 +46,21 @@ template <class T>
 void Cell<T>::setNext(Cell<T> nextcell){
     next = &nextcell;
 }
+
 template <class T>
 
-
-Cell<T>::operator std::string() const {
-    return std::to_string(content);
-}
-template <class T>
-
-bool Cell<T>::equal(Cell<T> other){
+bool Cell<T>::equal(Cell<T> other) const{
     return content == other.content && next == other.next;
+}
+
+template <class T>
+const string Cell<T>::toString() const//const means read-only
+{
+    ostringstream buffer;
+
+    buffer<<fixed<<showpoint<<setprecision(4)//float and double display
+    <<"["<<content<<"]";
+
+
+    return buffer.str();
 }
