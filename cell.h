@@ -29,11 +29,13 @@ class Cell{
 
         Cell<T> getNext() const;
 
-        void setNext(Cell<T> nextcell);
+        void setNext(Cell<T> *nextcell);
 
         bool equal(Cell<T> other) const;
 
         const string toString() const;
+
+        bool hasNext() const;
 
 };
 
