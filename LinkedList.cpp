@@ -41,7 +41,7 @@ const string LinkedList<T>::toString() const{
         //std::cout<<"entering loop head = "<<(*head).toString()<<" next head = "<<(*head).getNext().toString()<<endl;
 
         //std::cout<< "loop entry, walker = "<<(*walker).toString()<<endl;
-        buffer<< (*walker).toString();
+        buffer<< (*walker).toString()<<", ";
         //std::cout<<"buffer loaded"<<buffer.str()<<endl;
         walker = (*walker).getNextPtr();
         //std::cout<< "walker increased"<<endl;
