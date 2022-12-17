@@ -31,6 +31,8 @@ class Cell{
 
         Cell<T> getNext() const;
 
+        Cell<T>* getNextPtr() const;
+
         void setNext(Cell<T> *nextcell);
 
         bool equal(Cell<T> other) const;

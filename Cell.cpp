@@ -47,6 +47,11 @@ Cell<T> Cell<T>::getNext() const{
 }
 
 template <class T>
+Cell<T>* Cell<T>::getNextPtr() const{
+    return next == nullptr ? throw std::invalid_argument("no cell founded") : next;
+}
+
+template <class T>
 void Cell<T>::setNext(Cell<T> *nextcell){
     next = nextcell;
 }
@@ -67,5 +72,5 @@ const string Cell<T>::toString() const//const means read-only
 
 template <class T>
 bool Cell<T>::hasNext() const{
-    return next!= nullptr;
+    return next != nullptr;
 }

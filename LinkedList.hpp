@@ -11,16 +11,18 @@ template <class T>
 class LinkedList{
     
     private:
-        Cell<T> *head;
-        Cell<T> *tail;
+        Cell<T> * head;
+        Cell<T> * tail;
 
     public:
 
         LinkedList();
 
-        LinkedList(Cell<T> new_head);
+        LinkedList(T content);
 
         ~LinkedList();
+
+        void push(T content);
 
 
         const string toString() const;

@@ -7,8 +7,11 @@ using namespace std;
 
 
 int main(){
-    Cell<int> c(5);
-    LinkedList<int> list(c);
+    LinkedList<int> list(5);
+    list.push(8);
+    list.push(9);
+    list.push(10);
+
     std::cout << list.toString() << std::endl;
     return 0;
 }
