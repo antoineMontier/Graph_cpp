@@ -9,23 +9,20 @@ LinkedList<T>::LinkedList(){
 
 template <class T>
 LinkedList<T>::~LinkedList(){
-    head = nullptr;
-    tail = nullptr;
+    free(head);
+    free(tail);
 }
 
 template <class T>
 LinkedList<T>::LinkedList(T content){
     Cell<T>* n_head = new Cell(content);//when using a pointer, add the "new"key word in front of the constructor
     //std::cout<<"n_head = "<<n_head->toString()<<endl;
-
     tail = n_head;
     //std::cout<<"tail = "<<(*tail).toString()<<endl;
-    
-
     head = tail;
     //std::cout<<"head = "<<(*head).toString()<<endl;
-
 }
+
 template <class T>
 
 const string LinkedList<T>::toString() const{
@@ -39,7 +36,6 @@ const string LinkedList<T>::toString() const{
     while ((*walker).hasNext())
     {
         //std::cout<<"entering loop head = "<<(*head).toString()<<" next head = "<<(*head).getNext().toString()<<endl;
-
         //std::cout<< "loop entry, walker = "<<(*walker).toString()<<endl;
         buffer<< (*walker).toString()<<", ";
         //std::cout<<"buffer loaded"<<buffer.str()<<endl;
