@@ -9,13 +9,13 @@ LinkedList<T>::LinkedList(){
 
 template <typename T>
 LinkedList<T>::~LinkedList() {
-    if(head == tail){
+    if(head == tail){//important not to destroy twice the same object otherwise error : "tcache 2" is throwed 
         delete head;
         head = nullptr;
         tail = nullptr;
     }else{
         if(head != nullptr){
-            delete head;
+            delete head;        //"delete" is the keyword used at the place of "free" for objects initialized by "new"
             head = nullptr;
         }
         if(tail!= nullptr){
@@ -87,6 +87,25 @@ void LinkedList<T>::push(T content){
         c->setNext(head);
         //std::cout<<"3rd ended"<<endl;
         head = c;
+    }
+}
+
+template <class T>
+void LinkedList<T>::pushTail(T content){
+    Cell<T>* c = new Cell(content);
+    if(head == nullptr){
+        head = c;
+        tail = c;
+        return;
+    }
+    if(head == tail){
+        head->setNext(c);
+        tail = c;
+        return;
+    }else{
+        tail->setNext(c);
+        tail = c;
+        return;
     }
 }
 

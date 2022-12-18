@@ -24,6 +24,8 @@ class LinkedList{
 
         void push(T content);
 
+        void pushTail(T content);
+
         T pop();
 
 
