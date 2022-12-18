@@ -160,6 +160,20 @@ int LinkedList<T>::size() const {
     return count;
 }
 
+template <class T>
+T LinkedList<T>::get(int index) const {
+    if(index < 0 || index >= size())
+        throw std::invalid_argument("list index out of bounds");
+    if(index == 0)
+        return head->getContent();
+    if(index == size()-1)
+        return tail->getContent();
+    Cell<T> *walker = head;
+    for(int i = 0; i < index; i++)
+        walker = walker->getNextPtr();
+    return walker->getContent();
+}
+
 
 
 

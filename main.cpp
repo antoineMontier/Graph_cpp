@@ -16,20 +16,8 @@ int main(){
     
     
     std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
+    for(int i = 0; i < list.size(); i++)
+        std::cout << i<< "th element = "<<list.get(i)<< std::endl;
 
-    std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
-
-    std::cout << list.pop() << std::endl;
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
-
-    std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
-    
-    std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
-
-    std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
     return 0;
 }
