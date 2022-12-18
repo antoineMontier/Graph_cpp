@@ -162,7 +162,7 @@ int LinkedList<T>::size() const {
 
 template <class T>
 T LinkedList<T>::get(int index) const {
-    if(index < 0 || index >= size())
+    if(index < 0 || index >= size() )
         throw std::invalid_argument("list index out of bounds");
     if(index == 0)
         return head->getContent();
@@ -188,7 +188,25 @@ void LinkedList<T>::set(int index, T content){
     walker->setContent(content);
 }
 
-
+template <class T>
+T LinkedList<T>::pop(int index){
+    if(index < 0 || index >= size())
+        throw std::invalid_argument("list index out of bounds");
+    if(index == 0)
+        return pop();
+    if(index == size()-1)
+        return popTail();
+    Cell<T> *walker1 = head;
+    Cell<T> *walker2 = head;
+    for(int i = 0; i < index; i++){
+        walker2 = walker1;
+        walker1 = walker1->getNextPtr();
+    }
+    T result = walker1->getContent();
+    walker2->setNext(walker1->getNextPtr());
+    delete walker1;
+    return result;
+}
 
 
 

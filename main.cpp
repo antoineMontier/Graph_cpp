@@ -16,9 +16,8 @@ int main(){
     
     
     std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
-    for(int i = 0; i < list.size(); i++)
-        list.set(i, i*i);
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
+    for(int i = 0; i < list.size() ; i++)
+        std::cout <<"i = " << i << "  "<< list.toString() << " || " << list.pop(i)<< " || " <<list.size()<< std::endl;
 
     return 0;
 }

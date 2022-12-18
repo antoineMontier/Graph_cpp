@@ -36,6 +36,8 @@ class LinkedList{
 
         void set(int index, T content);
 
+        T pop(int index);
+
 
         const string toString() const;
 
