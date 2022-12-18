@@ -209,6 +209,26 @@ T LinkedList<T>::pop(int index){
 }
 
 
+template <class T>
+void LinkedList<T>::push(int index, T content){
+    if(index < 0 || index > size())
+        throw std::invalid_argument("list index out of bounds");
+    if(index == 0)
+        return push(content);
+    if(index == size())
+        return pushTail(content);
+    Cell<T> *newbie = new Cell(content);
+    Cell<T> *walker1 = head;
+    Cell<T> *walker2 = head;
+    for(int i = 0; i < index; i++){
+        walker2 = walker1;
+        walker1 = walker1->getNextPtr();
+    }
+    walker2->setNext(newbie);
+    newbie->setNext(walker1);
+}
+
+
 
 
 
