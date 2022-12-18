@@ -15,21 +15,21 @@ int main(){
     list.push(10);
     
     
-    std::cout << list.toString() << std::endl;
+    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
 
     std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << std::endl;
+    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
 
     std::cout << list.pop() << std::endl;
-    std::cout << list.toString() << std::endl;
+    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
 
     std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << std::endl;
+    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
     
     std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << std::endl;
+    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
 
     std::cout << list.popTail() << std::endl;
-    std::cout << list.toString() << std::endl;
+    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
     return 0;
 }

@@ -145,7 +145,20 @@ T LinkedList<T>::popTail(){
     }
 }
 
-
+template <class T>
+int LinkedList<T>::size() const {
+    if(head == nullptr)
+        return 0;
+    if(head == tail)
+        return 1;
+    int count = 2;
+    Cell<T> *walker = head;
+    while(walker->getNextPtr()!= tail){
+        walker = walker->getNextPtr();
+        count++;
+    }
+    return count;
+}
 
 
 

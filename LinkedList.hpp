@@ -30,6 +30,8 @@ class LinkedList{
 
         T popTail();
 
+        int size() const;
+
 
         const string toString() const;
 
