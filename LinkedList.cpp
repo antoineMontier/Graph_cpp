@@ -174,6 +174,20 @@ T LinkedList<T>::get(int index) const {
     return walker->getContent();
 }
 
+template <class T>
+void LinkedList<T>::set(int index, T content){
+    if(index < 0 || index >= size())
+        throw std::invalid_argument("list index out of bounds");
+    if(index == 0)
+        return head->setContent(content);
+    if(index == size()-1)
+        return tail->setContent(content);
+    Cell<T> *walker = head;
+    for(int i = 0; i < index; i++)
+        walker = walker->getNextPtr();
+    walker->setContent(content);
+}
+
 
 
 
