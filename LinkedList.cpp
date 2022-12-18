@@ -124,3 +124,42 @@ T LinkedList<T>::pop(){
         return result;
     }
 }
+
+template <class T>
+T LinkedList<T>::popTail(){
+    if(head == nullptr)
+        throw std::invalid_argument("empty list cannot be popped");
+    if(head == tail){
+        T result = head->getContent();
+        head = nullptr;
+        tail = nullptr;
+        return result;
+    }else{
+        T result = tail->getContent();
+        Cell<T> *walker = head;
+        while(walker->getNextPtr() != tail)
+            walker = walker->getNextPtr();
+        tail = walker;
+        tail->setNext(nullptr);
+        return result;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
