@@ -14,7 +14,7 @@ CC = g++
 EXE = main
 
 # compilation flages (CFLAGS) and links edition (LDFLAGS)
-CFLAGS += -Wall `sdl2-config --cflags`
+CFLAGS += -Wall -g `sdl2-config --cflags`
 LDFLAGS = -lm -lSDL2_ttf `sdl2-config --libs`
 
 # principal rule : make the executable file

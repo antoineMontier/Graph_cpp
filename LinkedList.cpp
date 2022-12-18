@@ -228,6 +228,22 @@ void LinkedList<T>::push(int index, T content){
     newbie->setNext(walker1);
 }
 
+template <class T>
+bool LinkedList<T>::equals(LinkedList<T> other) const{
+    if(size()!= other.size())
+        return false;
+    for(int i = 0; i < size(); i++)
+        if(!get(i).equals(other.get(i)))
+            return false;
+    return true;
+}
+
+template <class T>
+void LinkedList<T>::bubbleSort(std::function<bool(T, T)> comparator){
+  // ...
+    return;
+}
+
 
 
 

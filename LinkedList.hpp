@@ -1,5 +1,6 @@
 #include "Cell.hpp"
 #include "Cell.cpp"
+#include <functional>
 
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
@@ -40,6 +41,9 @@ class LinkedList{
 
         void push(int index, T content);
 
+        bool equals(LinkedList<T> other) const;
+
+        void bubbleSort(std::function<bool(T, T)> comparator);
 
         const string toString() const;
 
