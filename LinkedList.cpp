@@ -292,3 +292,20 @@ void LinkedList<T>::bubbleSort(std::function<bool(T, T)> comparator)
             }
     }
 }
+
+template <class T>
+LinkedList<T> LinkedList<T>::map(std::function <T(T)> mapfunction){
+    LinkedList<T>* result = new LinkedList<T>();
+    for (int i = 0; i < size(); i++)
+        result->pushTail(mapfunction(get(i)));
+    return *result;
+}
+
+template <class T>
+LinkedList<T> LinkedList<T>::filter(std::function <bool(T)> filterfunction){
+    LinkedList<T>* result = new LinkedList<T>();
+    for (int i = 0; i < size(); i++)
+        if (filterfunction(get(i)))
+            result->pushTail(get(i));
+    return *result;
+}

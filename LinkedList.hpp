@@ -44,6 +44,9 @@ class LinkedList{
 
         void bubbleSort(std::function <bool(T, T)> comparator);
 
+        LinkedList<T> map(std::function <T(T)> mapfunction);
+
+        LinkedList<T> filter(std::function <bool(T)> filterfunction);
 
         const string toString() const;
 

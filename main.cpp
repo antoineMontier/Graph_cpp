@@ -20,5 +20,10 @@ int main(){
 
     std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
 
+    std::cout << list.map([](int k){return k*k*k;}).toString() << " k*k*k "<< std::endl;
+
+    std::cout << list.filter([](int k){return k % 2 == 0;}).toString() << " evens "<< std::endl;
+
+
     return 0;
 }
