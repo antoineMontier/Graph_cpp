@@ -33,6 +33,9 @@ int main(){
     node4.linkTo(&node2);
     node2.linkTo(&node2);
 
+    node1.unlink(&node3);
+
+
 
     std::cout   <<  node1.toString() <<    " neightbours number : "  <<    node1.neighboursCount()  <<  endl;
     std::cout   <<  node2.toString() <<    " neightbours number : "  <<    node2.neighboursCount()  <<  endl;

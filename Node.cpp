@@ -76,4 +76,15 @@ template <class T>
 int Node<T>::neighboursCount() const{
     return neighbours->size();
 }
+template <class T>
+bool Node<T>::unlink(Node* node){
+    if(!isLinked(node))
+        return false; // no unlike possible
+    for(int i = 0; i < neighboursCount(); i++)
+        if(neighbours->get(i) == node){
+            neighbours->pop(i);
+            return true;
+        }
+    return false;
+}
 

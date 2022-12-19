@@ -34,6 +34,8 @@ class Node{
         bool isLinked(Node* node) const;
 
         int neighboursCount() const;
+
+        bool unlink(Node* node);
 };
 
 
