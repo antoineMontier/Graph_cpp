@@ -26,5 +26,11 @@ int main(){
 
     std::cout << list.reduce(1, [](int a, int b){return a * b;}) << " reduce "<< std::endl;
 
+    std::cout << list.extremum([](int a, int b){return a > b;}) << " min "<< std::endl;
+    std::cout << list.extremum([](int a, int b){return a < b;}) << " max "<< std::endl;
+
+
+
+
     return 0;
 }

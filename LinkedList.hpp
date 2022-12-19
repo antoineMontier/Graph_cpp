@@ -44,13 +44,15 @@ class LinkedList{
 
         void bubbleSort(std::function <bool(T, T)> comparator);
 
-        LinkedList<T> map(std::function <T(T)> mapfunction);
+        LinkedList<T> map(std::function <T(T)> mapfunction) const;
 
-        LinkedList<T> filter(std::function <bool(T)> filterfunction);
+        LinkedList<T> filter(std::function <bool(T)> filterfunction) const;
 
         bool contains(T obj) const;
 
-        T reduce(T first, std::function<T(T, T)> reducefunction);
+        T reduce(T first, std::function<T(T, T)> reducefunction) const;
+
+        T extremum(std::function <bool(T, T)> comparator) const;
 
         const string toString() const;
 

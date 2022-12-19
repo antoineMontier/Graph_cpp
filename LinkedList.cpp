@@ -294,7 +294,7 @@ void LinkedList<T>::bubbleSort(std::function<bool(T, T)> comparator)
 }
 
 template <class T>
-LinkedList<T> LinkedList<T>::map(std::function <T(T)> mapfunction){
+LinkedList<T> LinkedList<T>::map(std::function <T(T)> mapfunction) const{
     LinkedList<T>* result = new LinkedList<T>();
     for (int i = 0; i < size(); i++)
         result->pushTail(mapfunction(get(i)));
@@ -302,7 +302,7 @@ LinkedList<T> LinkedList<T>::map(std::function <T(T)> mapfunction){
 }
 
 template <class T>
-LinkedList<T> LinkedList<T>::filter(std::function <bool(T)> filterfunction){
+LinkedList<T> LinkedList<T>::filter(std::function <bool(T)> filterfunction) const{
     LinkedList<T>* result = new LinkedList<T>();
     for (int i = 0; i < size(); i++)
         if (filterfunction(get(i)))
@@ -319,11 +319,22 @@ bool LinkedList<T>::contains(T obj) const{
 }
 
 template <class T>
-T LinkedList<T>::reduce(T first, std::function<T(T, T)> reducefunction){
+T LinkedList<T>::reduce(T first, std::function<T(T, T)> reducefunction) const{
     if(size() == 0)
         return first;
     T result = first;
     for (int i = 0; i < size(); i++)
         result = reducefunction(result, get(i));
+    return result;
+}
+
+template <class T>
+T LinkedList<T>::extremum(std::function <bool(T, T)> comparator) const{
+    if(size() == 0)
+        return T();
+    T result = get(0);
+    for (int i = 1; i < size(); i++)
+        if (comparator(result, get(i)))
+            result = get(i);
     return result;
 }
