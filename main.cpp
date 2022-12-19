@@ -7,13 +7,19 @@ using namespace std;
 
 int main(){
     Node<int> node;
-    std::cout<<node.toString()<<endl;
-    
     node.set(5);
+
+    Node<int> node2;
+    node2.set(6);
+
+
+
     std::cout<<node.toString()<<endl;
-    
-    std::cout<<node.get()<<endl;
+
+    node.linkTo(&node2);
+
     std::cout<<node.toString()<<endl;
-    
+
+
     return 0;
 }

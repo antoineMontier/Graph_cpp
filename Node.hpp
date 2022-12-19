@@ -11,13 +11,15 @@ class Node{
     
     private:
         std::unique_ptr<T> data;
-        LinkedList<Node>* neighbours;
+        LinkedList<Node<T> *> *neighbours;
 
     public:
 
         Node();
 
         Node(T content);
+
+        Node(const Node<T> &other);
 
         ~Node();
 
@@ -26,6 +28,8 @@ class Node{
         T get() const;
 
         const string toString() const;
+
+        void linkTo(Node* node);
 };
 
 
