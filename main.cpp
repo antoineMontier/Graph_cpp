@@ -30,6 +30,12 @@ int main(){
 
     std::cout << list.reverse().toString() << " reverse "<< std::endl;
 
+    LinkedList<int> list_2;
+    list_2.pushTail(0);
+    list_2.pushTail(1);
+    list_2.pushTail(2);
+
+    std::cout << list.merge(list_2).toString() << " merged "<< std::endl;
 
     return 0;
 }

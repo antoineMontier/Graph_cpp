@@ -12,25 +12,18 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-    if (head == tail)
-    { // important not to destroy twice the same object otherwise error : "tcache 2" is throwed
-        delete head;
-        head = nullptr;
-        tail = nullptr;
-    }
-    else
+    if (head == nullptr)
+        return;
+    Cell<T>* current = head;
+    while (current->hasNext())
     {
-        if (head != nullptr)
-        {
-            delete head; //"delete" is the keyword used at the place of "free" for objects initialized by "new"
-            head = nullptr;
-        }
-        if (tail != nullptr)
-        {
-            delete tail;
-            tail = nullptr;
-        }
+        Cell<T>* next = current->getNextPtr();
+        delete current;
+        current = next;
     }
+    delete tail;
+    head = nullptr;
+    tail = nullptr;
 }
 
 template <class T>
@@ -352,4 +345,14 @@ LinkedList<T> LinkedList<T>::reverse() const{
         res->push(get(i));
     }
     return *res;;
+}
+
+template <class T>
+LinkedList<T> LinkedList<T>::merge(LinkedList<T> other) const{
+    LinkedList<T> *result = new LinkedList<T>();
+    for (int i = 0; i < size(); i++)
+        result->pushTail(get(i));
+    for(int i = 0; i < other.size(); i++)
+        result->pushTail(other.get(i));
+    return *result;
 }

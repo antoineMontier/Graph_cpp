@@ -57,7 +57,7 @@ class LinkedList{
 
         LinkedList<T> reverse() const;
 
-        //LinkedList<T> merge(LinkedList<T> other) const;
+        LinkedList<T> merge(LinkedList<T> other) const;
 
         const string toString() const;
 
