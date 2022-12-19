@@ -312,7 +312,7 @@ LinkedList<T> LinkedList<T>::filter(std::function <bool(T)> filterfunction) cons
 template <class T>
 bool LinkedList<T>::contains(T obj) const{
     for (int i = 0; i < size(); i++)
-        if (get(i).equals(obj))
+        if (get(i) == obj)
             return true;
     return false;
 }

@@ -30,6 +30,10 @@ class Node{
         const string toString() const;
 
         void linkTo(Node* node);
+
+        bool isLinked(Node* node) const;
+
+        int neighboursCount() const;
 };
 
 

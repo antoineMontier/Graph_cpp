@@ -58,7 +58,7 @@ const string Node<T>::toString() const{
         buffer << *data;
     else
         buffer << "-";
-    buffer << " | nb : " << neighbours->size();
+    //buffer << " | nb : " << neighbours->size();
     return buffer.str();
 }
 
@@ -66,3 +66,14 @@ template <class T>
 void Node<T>::linkTo(Node* node){
     neighbours->pushTail(node);
 }
+
+template <class T>
+bool Node<T>::isLinked(Node* node) const{
+    return neighbours->contains(node);
+}
+
+template <class T>
+int Node<T>::neighboursCount() const{
+    return neighbours->size();
+}
+
