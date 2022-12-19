@@ -48,6 +48,10 @@ class LinkedList{
 
         LinkedList<T> filter(std::function <bool(T)> filterfunction);
 
+        bool contains(T obj) const;
+
+        T reduce(T first, std::function<T(T, T)> reducefunction);
+
         const string toString() const;
 
 };

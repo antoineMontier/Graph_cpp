@@ -24,6 +24,7 @@ int main(){
 
     std::cout << list.filter([](int k){return k % 2 == 0;}).toString() << " evens "<< std::endl;
 
+    std::cout << list.reduce(1, [](int a, int b){return a * b;}) << " reduce "<< std::endl;
 
     return 0;
 }

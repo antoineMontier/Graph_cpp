@@ -309,3 +309,21 @@ LinkedList<T> LinkedList<T>::filter(std::function <bool(T)> filterfunction){
             result->pushTail(get(i));
     return *result;
 }
+
+template <class T>
+bool LinkedList<T>::contains(T obj) const{
+    for (int i = 0; i < size(); i++)
+        if (get(i).equals(obj))
+            return true;
+    return false;
+}
+
+template <class T>
+T LinkedList<T>::reduce(T first, std::function<T(T, T)> reducefunction){
+    if(size() == 0)
+        return first;
+    T result = first;
+    for (int i = 0; i < size(); i++)
+        result = reducefunction(result, get(i));
+    return result;
+}
