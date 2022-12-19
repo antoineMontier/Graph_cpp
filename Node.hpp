@@ -20,25 +20,13 @@ class Node{
         Node(T content);
 
         ~Node();
+
+        void set(T content);
+
+        T get() const;
+
+        const string toString() const;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif
