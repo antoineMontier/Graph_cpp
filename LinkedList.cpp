@@ -8,6 +8,7 @@ LinkedList<T>::LinkedList()
     tail = nullptr;
 }
 
+
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
@@ -275,22 +276,27 @@ bool LinkedList<T>::equals(LinkedList<T> other) const
 }
 
 template <class T>
-void LinkedList<T>::bubbleSort(std::function<bool(T, T)> comparator)
+LinkedList<T> LinkedList<T>::bubbleSort(std::function<bool(T, T)> comparator)
 {
+    //first let's copy
+    LinkedList<T> * result = new LinkedList<T>();
+    for(int i = 0; i < size(); i++)
+        result->pushTail(get(i));
     T tmp;
     bool sorted = false;
     while (!sorted)
     {
         sorted = true;
         for (int i = 0; i < size() - 1; i++)
-            if (!comparator(get(i), get(i + 1)))
+            if (!comparator(result->get(i), result->get(i + 1)))
             {
-                tmp = get(i);
-                set(i, get(i + 1));
-                set(i + 1, tmp);
+                tmp = result->get(i);
+                result->set(i, result->get(i + 1));
+                result->set(i + 1, tmp);
                 sorted = false;
             }
     }
+    return* result;
 }
 
 template <class T>
@@ -337,4 +343,13 @@ T LinkedList<T>::extremum(std::function <bool(T, T)> comparator) const{
         if (comparator(result, get(i)))
             result = get(i);
     return result;
+}
+
+template <class T>
+LinkedList<T> LinkedList<T>::reverse() const{
+    LinkedList<T>* res = new LinkedList<T>();
+    for (int i = 0 ; i < size(); i++){
+        res->push(get(i));
+    }
+    return *res;;
 }

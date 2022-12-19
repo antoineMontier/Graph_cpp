@@ -16,9 +16,7 @@ int main(){
     
     std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
 
-    list.bubbleSort([](int a,  int b){return a < b;});
-
-    std::cout << list.toString() << " of size = "<<list.size()<< std::endl;
+    std::cout << list.bubbleSort([](int a,  int b){return a < b;}).toString() << " sorted " << std::endl;
 
     std::cout << list.map([](int k){return k*k*k;}).toString() << " k*k*k "<< std::endl;
 
@@ -27,9 +25,10 @@ int main(){
     std::cout << list.reduce(1, [](int a, int b){return a * b;}) << " reduce "<< std::endl;
 
     std::cout << list.extremum([](int a, int b){return a > b;}) << " min "<< std::endl;
+
     std::cout << list.extremum([](int a, int b){return a < b;}) << " max "<< std::endl;
 
-
+    std::cout << list.reverse().toString() << " reverse "<< std::endl;
 
 
     return 0;

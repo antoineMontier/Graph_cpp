@@ -20,6 +20,7 @@ class LinkedList{
 
         LinkedList(T content);
 
+
         ~LinkedList();
 
         void push(T content);
@@ -42,7 +43,7 @@ class LinkedList{
 
         bool equals(LinkedList<T> other) const;
 
-        void bubbleSort(std::function <bool(T, T)> comparator);
+        LinkedList<T> bubbleSort(std::function <bool(T, T)> comparator);
 
         LinkedList<T> map(std::function <T(T)> mapfunction) const;
 
@@ -53,6 +54,10 @@ class LinkedList{
         T reduce(T first, std::function<T(T, T)> reducefunction) const;
 
         T extremum(std::function <bool(T, T)> comparator) const;
+
+        LinkedList<T> reverse() const;
+
+        //LinkedList<T> merge(LinkedList<T> other) const;
 
         const string toString() const;
 
