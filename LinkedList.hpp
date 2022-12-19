@@ -1,4 +1,3 @@
-#include "Cell.hpp"
 #include "Cell.cpp"
 #include <functional>
 
@@ -43,7 +42,8 @@ class LinkedList{
 
         bool equals(LinkedList<T> other) const;
 
-        void bubbleSort(std::function<bool(T, T)> comparator);
+        void bubbleSort(std::function <bool(T, T)> comparator);
+
 
         const string toString() const;
 
