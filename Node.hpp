@@ -27,6 +27,8 @@ class Node{
 
         T get() const;
 
+        const LinkedList<Node<T> *> getNeighbours() const;
+
         const string toString() const;
 
         void linkTo(Node* node);

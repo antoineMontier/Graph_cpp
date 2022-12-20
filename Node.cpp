@@ -94,3 +94,8 @@ void Node<T>::unlinkAll(){
         neighbours->pop(i);
     }
 }
+
+template <class T>
+const LinkedList<Node<T> *> Node<T>::getNeighbours() const{
+    return *neighbours;
+}

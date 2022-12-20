@@ -11,6 +11,11 @@ class Graph{
     
     private:
         LinkedList<Node<T> *> *nodes;
+        
+        bool tabContains(Node<T>** tab, Node<T> * target);
+
+        bool placeZero(Node<T>** tab, Node<T> * target);
+
 
     public:
 
@@ -36,9 +41,13 @@ class Graph{
 
         bool removeEdge(Node<T> *from, Node<T> *to);
 
-        bool isDirected() const;
+        bool isDirected() const;//can be improved 
 
-        //bool isInterconnected() const;
+        bool searchFrom(Node<T> *from, Node<T> *to, Node<T>** unvisit_array) const;
+
+        bool pathExists(Node<T> *from, Node<T> *to) const;
+
+        //bool isWeaklyConnected() const;
 };
 
 
