@@ -36,7 +36,9 @@ class Graph{
 
         bool removeEdge(Node<T> *from, Node<T> *to);
 
-        bool isInterconnected() const;
+        bool isDirected() const;
+
+        //bool isInterconnected() const;
 };
 
 

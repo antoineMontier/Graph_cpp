@@ -14,13 +14,13 @@ int main(){
     g.addNode(&n1);
     g.addNode(&n2);
     g.addNode(&n3);
-    g.addEdge(&n1, &n2);
+    g.addDoubleEdge(&n1, &n2);
     g.addEdge(&n1, &n3);
-    g.addEdge(&n2, &n3);
-    g.addEdge(&n3, &n3);
+    g.addEdge(&n1, &n3);
+    g.addEdge(&n3, &n1);
 
     std::cout << "Graph  :\n\n" << g.toString() << std::endl;
-    std::cout << "is the Graph interconnected :\n\n" << g.isInterconnected() << std::endl;
+    std::cout << "is the Graph simple :\n\n" << g.isDirected() << std::endl;
 
 
     return 0;

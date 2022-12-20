@@ -138,6 +138,26 @@ bool Graph<T>::removeEdge(Node<T> *from, Node<T> *to){
 }
 
 template <class T>
+bool Graph<T>::isDirected() const{//we're ckecking if every edge is double linked (except for loops)
+    for(int i = 0 ; i < nodes->size() ; i++){
+        int neighbours_to_test = nodes->get(i)->neighboursCount();
+        if(nodes->get(i)->isLinked(nodes->get(i)))
+            neighbours_to_test--;               //don't count the loops
+        while(neighbours_to_test > 0){
+            for(int j = 0; j < nodes->size(); j++){
+                if(nodes->get(i)->isLinked(nodes->get(j))){
+                    neighbours_to_test--;
+                    if(!nodes->get(j)->isLinked(nodes->get(i)))
+                        return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+/*
+template <class T>
 bool Graph<T>::isInterconnected() const{// a graph is interconnected (connexe in french) if it's possible to travel from any node to any other node
     if(nodes->size() < 2)
         return true;
@@ -147,3 +167,4 @@ bool Graph<T>::isInterconnected() const{// a graph is interconnected (connexe in
                 return false;
     return true;
 }
+*/
