@@ -55,7 +55,7 @@ template <class T>
 const string Node<T>::toString() const{
     ostringstream buffer;
     if(data != nullptr)
-        buffer << *data;
+        buffer <<"("<< *data<<")";
     else
         buffer << "-";
     //buffer << " | nb : " << neighbours->size();
