@@ -17,6 +17,12 @@ class Graph{
         Graph();
 
         ~Graph();
+
+        const string toString() const;
+        
+        long countNodes() const;
+
+        long countEdges() const;//counting 2 edges if it's a double edge
 };
 
 
