@@ -36,6 +36,8 @@ class Node{
         int neighboursCount() const;
 
         bool unlink(Node* node);
+
+        void unlinkAll();
 };
 
 

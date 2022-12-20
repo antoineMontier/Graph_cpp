@@ -88,3 +88,9 @@ bool Node<T>::unlink(Node* node){
     return false;
 }
 
+template <class T>
+void Node<T>::unlinkAll(){
+    for(int i = 0; i < neighboursCount(); i++){
+        neighbours->pop(i);
+    }
+}
