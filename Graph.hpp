@@ -26,7 +26,7 @@ class Graph{
 
         bool addNode(Node<T> *node);
 
-        //bool removeNode(Node<T> *node);
+        bool removeNode(Node<T> *node);
 
         bool isNodePresent(Node<T> *node) const;
 

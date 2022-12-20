@@ -84,7 +84,7 @@ bool Graph<T>::addEdge(Node<T> *from, Node<T> *to){
     from->linkTo(to);
     return true;
 }  
-/*
+
 template <class T>
 bool Graph<T>::removeNode(Node<T> *node){
     if(node == nullptr){
@@ -94,11 +94,21 @@ bool Graph<T>::removeNode(Node<T> *node){
     //assert node is in the graph
     if(!isNodePresent(node))
         return false;
-    for(int i = 0; i < nodes->size ; i++){
-
-    }
+    //first remove the node "N-------->Other" connexions
+    node->unlinkAll();
+    //then remove the node "Other----->N" connexions
+    for(int i = 0 ; i < nodes->size() ; i++)
+        while(nodes->get(i)->isLinked(node))
+            removeEdge(nodes->get(i), node);
+    //remove the node
+    for(int i = 0 ; i < nodes->size() ; i++)
+        if(nodes->get(i) == node){
+            nodes->pop(i);
+            return true;
+        }
+    return false;
 }
-*/
+
 template <class T>
 bool Graph<T>::removeEdge(Node<T> *from, Node<T> *to){
     if(from == nullptr || to == nullptr){
