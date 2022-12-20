@@ -86,6 +86,21 @@ bool Graph<T>::addEdge(Node<T> *from, Node<T> *to){
 }  
 
 template <class T>
+bool Graph<T>::addDoubleEdge(Node<T> *from, Node<T> *to){
+    if(from == nullptr || to == nullptr){
+        throw std::invalid_argument("you can't link from or to a null node");
+        return false;
+    }
+    //first assert that the source and destination are in the graph :
+    if(!isNodePresent(from) ||!isNodePresent(to))
+        return false;
+    //add the edges
+    from->linkTo(to);
+    to->linkTo(from);
+    return true;
+}  
+
+template <class T>
 bool Graph<T>::removeNode(Node<T> *node){
     if(node == nullptr){
         throw std::invalid_argument("you can't remove a null node");
@@ -120,4 +135,15 @@ bool Graph<T>::removeEdge(Node<T> *from, Node<T> *to){
         return false;
     //remove the edge
     return from->unlink(to);
+}
+
+template <class T>
+bool Graph<T>::isInterconnected() const{// a graph is interconnected (connexe in french) if it's possible to travel from any node to any other node
+    if(nodes->size() < 2)
+        return true;
+    for(int i = 0; i < nodes->size(); i++)
+        for(int j = i + 1; j < nodes->size(); j++)
+            if(!nodes->get(i)->isLinked(nodes->get(j)) && !nodes->get(j)->isLinked(nodes->get(i)))//no connections
+                return false;
+    return true;
 }

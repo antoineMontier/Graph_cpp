@@ -19,11 +19,8 @@ int main(){
     g.addEdge(&n2, &n3);
     g.addEdge(&n3, &n3);
 
-    std::cout << "Graph before removing n3 (-0.2) :\n\n" << g.toString() << std::endl;
-
-    g.removeNode(&n3);
-
-    std::cout << "Graph after removing n3 (-0.2) :\n\n" << g.toString() << std::endl;
+    std::cout << "Graph  :\n\n" << g.toString() << std::endl;
+    std::cout << "is the Graph interconnected :\n\n" << g.isInterconnected() << std::endl;
 
 
     return 0;

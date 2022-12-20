@@ -32,7 +32,11 @@ class Graph{
 
         bool addEdge(Node<T> *from, Node<T> *to);
 
+        bool addDoubleEdge(Node<T> *from, Node<T> *to);
+
         bool removeEdge(Node<T> *from, Node<T> *to);
+
+        bool isInterconnected() const;
 };
 
 
