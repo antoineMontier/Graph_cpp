@@ -24,7 +24,7 @@ class Graph{
 
         long countEdges() const;//counting 2 edges if it's a double edge
 
-        void addNode(T data);
+        void addNode(Node<T> *node);
 };
 
 

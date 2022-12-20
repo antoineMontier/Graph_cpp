@@ -52,7 +52,6 @@ long Graph<T>::countEdges() const {
 }
 
 template <class T>
-void Graph<T>::addNode(T data) {
-    Node<T>* node = new Node<T>(data);
-    nodes->push(node);
+void Graph<T>::addNode(Node<T> *node) {
+    nodes->pushTail(node);
 }
