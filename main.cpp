@@ -15,6 +15,8 @@ int main(){
     g.addNode(&n2);
     g.addEdge(&n1, &n2);
     g.addEdge(&n1, &n3);
+    g.removeEdge(&n1, &n3);
+    g.removeEdge(&n1, &n2);
 
     std::cout << "nodes number : " << g.countNodes() << std::endl;
     std::cout << "Graph :\n\n" << g.toString() << std::endl;

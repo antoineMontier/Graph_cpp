@@ -52,21 +52,31 @@ long Graph<T>::countEdges() const {
 }
 
 template <class T>
-void Graph<T>::addNode(Node<T> *node) {
-    if(node == nullptr)
-        throw std::invalid_argument("you can't add a null node");
-    nodes->pushTail(node);
-}
-
-template <class T>
 bool Graph<T>::isNodePresent(Node<T> *node) const {
     return nodes->contains(node);
 }
 
 template <class T>
+bool Graph<T>::addNode(Node<T> *node) {
+    if(node == nullptr){
+        throw std::invalid_argument("you can't add a null node");
+        return false;
+    }
+    //assert node isn't already in the graph
+    if(isNodePresent(node))
+        return false;
+    nodes->pushTail(node);
+    return true;
+}
+
+
+
+template <class T>
 bool Graph<T>::addEdge(Node<T> *from, Node<T> *to){
-    if(from == nullptr || to == nullptr)
-        return false;       // error throwing would have been another way to do this
+    if(from == nullptr || to == nullptr){
+        throw std::invalid_argument("you can't link from or to a null node");
+        return false;
+    }
     //first assert that the source and destination are in the graph :
     if(!isNodePresent(from) ||!isNodePresent(to))
         return false;
@@ -74,3 +84,30 @@ bool Graph<T>::addEdge(Node<T> *from, Node<T> *to){
     from->linkTo(to);
     return true;
 }  
+/*
+template <class T>
+bool Graph<T>::removeNode(Node<T> *node){
+    if(node == nullptr){
+        throw std::invalid_argument("you can't remove a null node");
+        return false;
+    }
+    //assert node is in the graph
+    if(!isNodePresent(node))
+        return false;
+    for(int i = 0; i < nodes->size ; i++){
+
+    }
+}
+*/
+template <class T>
+bool Graph<T>::removeEdge(Node<T> *from, Node<T> *to){
+    if(from == nullptr || to == nullptr){
+        throw std::invalid_argument("you can't unlink from or to a null node");
+        return false;
+    }
+    //assert that the source and destination are in the graph :
+    if(!isNodePresent(from) ||!isNodePresent(to))
+        return false;
+    //remove the edge
+    return from->unlink(to);
+}
