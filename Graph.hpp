@@ -12,7 +12,7 @@ class Graph{
     private:
         LinkedList<Node<T> *> *nodes;
 
-        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list, bool directed) const;
+        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list, bool directed, bool ignore_first) const;
 
     public:
 
@@ -49,6 +49,12 @@ class Graph{
         bool isWeaklyConnected() const;
 
         bool isComplete() const;
+
+        bool isCycle() const; // works but even if the cycle is between two nodes like this <---> ...
+
+        //bool isArticulation() const; strong/weak ?
+
+        //bool isBipartite() const;
 };
 
 

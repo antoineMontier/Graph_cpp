@@ -8,13 +8,13 @@ using namespace std;
 int main(){
 
     Graph<double> g;
-    Node<double> n1(8.2);
-    Node<double> n2(15.68);
-    Node<double> n3(-0.2);
-    Node<double> n4(-7.2);
-    Node<double> n5(12.36);
-    Node<double> n6(1.0);
-    Node<double> n7(8.9);
+    Node<double> n1(1.0);
+    Node<double> n2(2.0);
+    Node<double> n3(3.0);
+    Node<double> n4(4.0);
+    Node<double> n5(5.0);
+    Node<double> n6(6.0);
+    Node<double> n7(7.0);
 
     g.addNode(&n1);
     g.addNode(&n2);
@@ -43,6 +43,8 @@ int main(){
     std::cout << "is the Graph strongly connected : " << g.isStronglyConnected() << std::endl;
     std::cout << "is the Graph weakly connected : " << g.isWeaklyConnected() << std::endl;
     std::cout << "is the graph full : " << g.isComplete() << std::endl;
+    std::cout << "is the graph a cycle : " << g.isCycle() << std::endl;
+
 
     return 0;
 }

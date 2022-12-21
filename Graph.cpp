@@ -177,22 +177,6 @@ bool Graph<T>::isDirected() const
     return true;
 }
 
-/*
-template <class T>
-bool Graph<T>::isWeaklyConnected()() const{// a graph is Weakly Connected if it's possible to travel from any node to any other node replacing every edge by double edges
-    if(nodes->size() < 2)
-        return true;
-    for(int i = 0; i < nodes->size(); i++)
-        for(int j = i + 1; j < nodes->size(); j++)
-            if(!nodes->get(i)->isLinked(nodes->get(j)) && !nodes->get(j)->isLinked(nodes->get(i)))//no connections
-                return false;
-    return true;
-}
-*/
-
-
-
-
 template <class T>
 bool Graph<T>::directedPathExists(Node<T> *from, Node<T> *to) const
 {
@@ -210,7 +194,7 @@ bool Graph<T>::directedPathExists(Node<T> *from, Node<T> *to) const
         if (nodes->get(i) != from)
             unvisited->push(nodes->get(i));
 
-    return searchFrom(from, to, unvisited, true);
+    return searchFrom(from, to, unvisited, true, false);
 }
 
 template <class T>
@@ -230,16 +214,14 @@ bool Graph<T>::undirectedPathExists(Node<T> *from, Node<T> *to) const
         if (nodes->get(i) != from)
             unvisited->push(nodes->get(i));
 
-    return searchFrom(from, to, unvisited, false);
+    return searchFrom(from, to, unvisited, false, false);
 }
 
 template <class T>
-bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list, bool directed) const
+bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list, bool directed, bool ignore_first) const
 {
-    // std::cout << "search" << endl;
-    if (from == nullptr || to == nullptr)
-        return false;
-    if (from == to) return true;
+    if (from == nullptr || to == nullptr) return false;
+    if (from == to  && !ignore_first) return true;
     if (unvisit_list->size() == 0)
     {
         delete unvisit_list;
@@ -247,16 +229,18 @@ bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unv
     }
     LinkedList<Node<T> *> *unvisited_bis = new LinkedList<Node<T> *>;
     for(int i = 0; i < unvisit_list->size(); i++)
-        if(unvisit_list->get(i) != from)
+        if(ignore_first)
+            unvisited_bis->push(unvisit_list->get(i));
+        else if(unvisit_list->get(i) != from)
             unvisited_bis->push(unvisit_list->get(i));
 
     for (int i = 0; i < unvisited_bis->size(); i++){
         if(directed){
             if (from->isLinked(unvisited_bis->get(i)))
-                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, true) == true) return true;
+                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, true, false) == true) return true;
         }else
             if (from->isLinked(unvisited_bis->get(i)) || unvisited_bis->get(i)->isLinked(from))
-                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, false) == true) return true;
+                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, false, false) == true) return true;
     }
         
 
@@ -290,3 +274,17 @@ bool Graph<T>::isComplete() const{// a graph is complete if all nodes are linked
                 return false;
     return true;
 }
+
+template <class T>
+bool Graph<T>::isCycle() const{//a graph is cycle if it's possible to find a path from a node to itself 
+    // let's find a path from a node to itself
+    if(nodes->size() < 2) return true;
+    bool found = false;
+    for(int i = 0; i < nodes->size() && !found; i++){
+        found = found || searchFrom(nodes->get(i), nodes->get(i), nodes, true, true);
+    }
+    return found;
+}
+
+
+
