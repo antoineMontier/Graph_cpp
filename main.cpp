@@ -17,7 +17,7 @@ int main(){
     Node<double> n7(8.9);
 
     g.addNode(&n1);
-    //g.addNode(&n2);
+    g.addNode(&n2);
     g.addNode(&n3);
     g.addNode(&n4);
     g.addNode(&n5);
@@ -41,6 +41,7 @@ int main(){
     std::cout << "is the Graph directed : " << g.isDirected() << std::endl;
 
     std::cout << "is the Graph strongly connected : " << g.isStronglyConnected() << std::endl;
+    std::cout << "is the Graph weakly connected : " << g.isWeaklyConnected() << std::endl;
 
 
     return 0;

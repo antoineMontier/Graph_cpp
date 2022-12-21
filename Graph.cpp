@@ -194,7 +194,7 @@ bool Graph<T>::isWeaklyConnected()() const{// a graph is Weakly Connected if it'
 
 
 template <class T>
-bool Graph<T>::pathExists(Node<T> *from, Node<T> *to) const
+bool Graph<T>::directedPathExists(Node<T> *from, Node<T> *to) const
 {
     if (from == nullptr || to == nullptr)
         throw std::invalid_argument("you can't find a path involving a null node");
@@ -208,22 +208,38 @@ bool Graph<T>::pathExists(Node<T> *from, Node<T> *to) const
     LinkedList<Node<T> *> *unvisited = new LinkedList<Node<T> *>;
     for (int i = 0; i < nodes->size(); i++)
         if (nodes->get(i) != from)
-        {
             unvisited->push(nodes->get(i));
-        }
-    return searchFrom(from, to, unvisited);
+
+    return searchFrom(from, to, unvisited, true);
 }
 
 template <class T>
-bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const
+bool Graph<T>::undirectedPathExists(Node<T> *from, Node<T> *to) const
+{
+    if (from == nullptr || to == nullptr)
+        throw std::invalid_argument("you can't find a path involving a null node");
+    if (!isNodePresent(from) || !isNodePresent(to))
+        return false;
+    if (from == to)
+        return true;
+    if (from->neighboursCount() == 0)
+        return false;
+    // search recursively
+    LinkedList<Node<T> *> *unvisited = new LinkedList<Node<T> *>;
+    for (int i = 0; i < nodes->size(); i++)
+        if (nodes->get(i) != from)
+            unvisited->push(nodes->get(i));
+
+    return searchFrom(from, to, unvisited, false);
+}
+
+template <class T>
+bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list, bool directed) const
 {
     // std::cout << "search" << endl;
     if (from == nullptr || to == nullptr)
         return false;
-    if (from == to)
-    {
-        return true;
-    }
+    if (from == to) return true;
     if (unvisit_list->size() == 0)
     {
         delete unvisit_list;
@@ -234,9 +250,15 @@ bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unv
         if(unvisit_list->get(i) != from)
             unvisited_bis->push(unvisit_list->get(i));
 
-    for (int i = 0; i < unvisited_bis->size(); i++)
-        if (from->isLinked(unvisited_bis->get(i)))
-            if (searchFrom(unvisited_bis->get(i), to, unvisited_bis) == true) return true;
+    for (int i = 0; i < unvisited_bis->size(); i++){
+        if(directed){
+            if (from->isLinked(unvisited_bis->get(i)))
+                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, true) == true) return true;
+        }else
+            if (from->isLinked(unvisited_bis->get(i)) || unvisited_bis->get(i)->isLinked(from))
+                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, false) == true) return true;
+    }
+        
 
     // std::cout << "last false" << endl;
     return false;
@@ -246,7 +268,16 @@ template <class T>
 bool Graph<T>::isStronglyConnected() const{//a graph is strongly connected if there is a path from x to y and from y to x for each node in the graph
     for(int i = 0; i < nodes->size(); i++) 
         for (int j = 0; j < nodes->size(); j++) 
-            if(i != j && !pathExists(nodes->get(i), nodes->get(j)))
+            if(i != j && !directedPathExists(nodes->get(i), nodes->get(j)))
+                return false;
+    return true;
+}
+
+template <class T>
+bool Graph<T>::isWeaklyConnected() const{//a graph is weakly connected if there is a path from x to y and from y to x for each node in the graph using 2-way edges
+    for(int i = 0; i < nodes->size(); i++) 
+        for (int j = 0; j < nodes->size(); j++) 
+            if(i != j && !undirectedPathExists(nodes->get(i), nodes->get(j)))
                 return false;
     return true;
 }

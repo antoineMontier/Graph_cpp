@@ -12,7 +12,7 @@ class Graph{
     private:
         LinkedList<Node<T> *> *nodes;
 
-        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const;
+        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list, bool directed) const;
 
     public:
 
@@ -40,11 +40,13 @@ class Graph{
 
         bool isDirected() const;//can be improved 
 
-        bool pathExists(Node<T> *from, Node<T> *to) const;
+        bool directedPathExists(Node<T> *from, Node<T> *to) const;
+
+        bool undirectedPathExists(Node<T> *from, Node<T> *to) const;
 
         bool isStronglyConnected() const;
 
-        //bool isWeaklyConnected() const;
+        bool isWeaklyConnected() const;
 };
 
 
