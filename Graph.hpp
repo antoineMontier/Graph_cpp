@@ -52,6 +52,12 @@ class Graph{
 
         bool isCycle() const; // works but even if the cycle is between two nodes like this <---> ...
 
+        //bool isDirectedTree() const;
+
+        bool isUndirectedTree() const;
+
+        bool isForest() const;
+
         //bool isArticulation() const; strong/weak ?
 
         //bool isBipartite() const;

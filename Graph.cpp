@@ -235,12 +235,21 @@ bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unv
             unvisited_bis->push(unvisit_list->get(i));
 
     for (int i = 0; i < unvisited_bis->size(); i++){
-        if(directed){
-            if (from->isLinked(unvisited_bis->get(i)))
-                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, true, false) == true) return true;
-        }else
-            if (from->isLinked(unvisited_bis->get(i)) || unvisited_bis->get(i)->isLinked(from))
-                if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, false, false) == true) return true;
+        if(ignore_first){
+            if(directed){
+                if (from->isLinked(unvisited_bis->get(i)) && unvisited_bis->get(i) != to)
+                    if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, true, false) == true) return true;
+            }else
+                if (unvisited_bis->get(i) != to && (from->isLinked(unvisited_bis->get(i)) || unvisited_bis->get(i)->isLinked(from)))
+                    if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, false, false) == true) return true;
+        }else{
+            if(directed){
+                if (from->isLinked(unvisited_bis->get(i)))
+                    if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, true, false) == true) return true;
+            }else
+                if (from->isLinked(unvisited_bis->get(i)) || unvisited_bis->get(i)->isLinked(from))
+                    if (searchFrom(unvisited_bis->get(i), to, unvisited_bis, false, false) == true) return true;
+        }
     }
         
 
@@ -286,5 +295,17 @@ bool Graph<T>::isCycle() const{//a graph is cycle if it's possible to find a pat
     return found;
 }
 
+/*
+template <class T>
+bool Graph<T>::isDirectedTree() const{//a graph is a directed tree if it's strongly connected and there are no cycles // the orientation can be to the root or to the leaves of the graph
+    if(nodes->size() < 2) return true;
 
+}
+*/
+
+template <class T>
+bool Graph<T>::isUndirectedTree() const{//a graph is an undirected tree if it's weakly connected and there are no cycles
+    if(isDirected()) return false;
+    return (!isCycle() && isWeaklyConnected()) || (!isCycle() && nodes->size() == countEdges()/2 - 1) || (!isWeaklyConnected() && nodes->size() == countEdges()/2 - 1);//one of the three conditions needs to be filled
+}
 
