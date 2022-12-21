@@ -40,9 +40,9 @@ class Graph{
 
         bool isDirected() const;//can be improved 
 
-        
-
         bool pathExists(Node<T> *from, Node<T> *to) const;
+
+        bool isStronglyConnected() const;
 
         //bool isWeaklyConnected() const;
 };
