@@ -11,11 +11,6 @@ class Graph{
     
     private:
         LinkedList<Node<T> *> *nodes;
-        
-        bool tabContains(Node<T>** tab, Node<T> * target);
-
-        bool placeZero(Node<T>** tab, Node<T> * target);
-
 
     public:
 
@@ -43,7 +38,7 @@ class Graph{
 
         bool isDirected() const;//can be improved 
 
-        bool searchFrom(Node<T> *from, Node<T> *to, Node<T>** unvisit_array) const;
+        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const;
 
         bool pathExists(Node<T> *from, Node<T> *to) const;
 

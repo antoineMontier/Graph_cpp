@@ -51,6 +51,10 @@ class LinkedList{
 
         bool contains(T obj) const;
 
+        bool remove(T obj);
+
+        bool removeAll(T obj);
+
         T reduce(T first, std::function<T(T, T)> reducefunction) const;
 
         T extremum(std::function <bool(T, T)> comparator) const;

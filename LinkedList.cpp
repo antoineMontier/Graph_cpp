@@ -356,3 +356,25 @@ LinkedList<T> LinkedList<T>::merge(LinkedList<T> other) const{
         result->pushTail(other.get(i));
     return *result;
 }
+
+template <class T>
+bool LinkedList<T>::remove(T obj){
+    bool removed = false;
+    for (int i = 0; i < size() && !removed; i++)
+        if (get(i) == obj){
+            removed = true;
+            pop(i);
+        }
+    return removed;
+}
+
+template <class T>
+bool LinkedList<T>::removeAll(T obj){
+    bool removed = false;
+    for (int i = size() -1; i >= 0 ;  i--)
+        if (get(i) == obj){
+            removed = true;
+            pop(i);
+        }
+    return removed;
+}

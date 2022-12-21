@@ -195,65 +195,47 @@ bool Graph<T>::pathExists(Node<T> *from, Node<T> *to) const
 {
     if (from == nullptr || to == nullptr)
         throw std::invalid_argument("you can't find a path involving a null node");
-    if (!isNodePresent(from) || !isNodePresent(to) || from->neighboursCount() == 0)
+    if (!isNodePresent(from) || !isNodePresent(to))
         return false;
     if (from == to)
         return true;
+    if(from->neighboursCount() == 0)
+        return false;
     // search recursively
-    Node<T> *unvisited[nodes->size()];
+    LinkedList<Node<T> *> *unvisited = new LinkedList<Node<T> *>;
     for (int i = 0; i < nodes->size(); i++)
         if (nodes->get(i) != from)
-            unvisited[i] = nodes->get(i);
-        else
-            unvisited[i] = 0;
+            unvisited->push(nodes->get(i));
+
     return searchFrom(from, to, unvisited);
 }
 
-template <class T>
-bool Graph<T>::tabContains(Node<T>** tab, Node<T> * target){
-    for (int i = 0; i < nodes->size(); i++)
-        if (tab[i] == target)
-            return true;
-    return false;
-}
 
-template <class T>
-bool Graph<T>::placeZero(Node<T>** tab, Node<T> * target){
-    for (int i = 0; i < nodes->size(); i++)
-        if (tab[i] == target){
-            tab[i] = 0;
-            return true;
-        }
-    return false;
-}
 
 
 template <class T>
-bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, Node<T> **unvisit_array) const
+bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const
 {
-    std::cout << "search" << endl;
+    //std::cout << "search" << endl;
     if (from == nullptr || to == nullptr)
         return false;
     if (from == to)
         return true;
-    bool everything_visited = true;
-    for (int i = 0; i < nodes->size(); i++)
-    {
-        everything_visited = everything_visited && unvisit_array[i] == 0;
-        if (everything_visited)
-        {
-            delete[] unvisit_array;
-            return false;
-        }
+    if(unvisit_list->size() == 0){
+        delete unvisit_list;
+        return false;
     }
     
-    for (int i = 0 ; i < nodes->size(); i++)
-        if(from->isLinked(nodes->get(i)) && tabContains(unvisit_array, nodes->get(i))){
-            placeZero(unvisit_array, nodes->get(i));
-            if(searchFrom(nodes->get(i), to, unvisit_array))
+    
+    for (int i = 0 ; i < unvisit_list->size(); i++)
+        if(from->isLinked(unvisit_list->get(i))){
+            //save the node before removing it from the unvisited list
+            Node<T> *temp = unvisit_list->get(i);
+            unvisit_list->remove(temp);
+            if(searchFrom(temp, to, unvisit_list))
                 return true;
         }
         
-    std::cout << "last false" << endl;
+    //std::cout << "last false" << endl;
     return false;
 }
