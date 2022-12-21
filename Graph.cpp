@@ -281,3 +281,12 @@ bool Graph<T>::isWeaklyConnected() const{//a graph is weakly connected if there 
                 return false;
     return true;
 }
+
+template <class T>
+bool Graph<T>::isComplete() const{// a graph is complete if all nodes are linked to all nodes in two directions
+    for (int i = 0; i < nodes->size(); i++)
+        for(int j = 0; j < nodes->size(); j++)
+            if(i != j && (!nodes->get(i)->isLinked(nodes->get(j)) || !nodes->get(j)->isLinked(nodes->get(i))))
+                return false;
+    return true;
+}

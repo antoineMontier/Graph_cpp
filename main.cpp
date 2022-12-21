@@ -42,7 +42,7 @@ int main(){
 
     std::cout << "is the Graph strongly connected : " << g.isStronglyConnected() << std::endl;
     std::cout << "is the Graph weakly connected : " << g.isWeaklyConnected() << std::endl;
-
+    std::cout << "is the graph full : " << g.isComplete() << std::endl;
 
     return 0;
 }

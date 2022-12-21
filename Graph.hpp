@@ -47,6 +47,8 @@ class Graph{
         bool isStronglyConnected() const;
 
         bool isWeaklyConnected() const;
+
+        bool isComplete() const;
 };
 
 
