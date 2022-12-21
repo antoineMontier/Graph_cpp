@@ -12,6 +12,8 @@ class Graph{
     private:
         LinkedList<Node<T> *> *nodes;
 
+        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const;
+
     public:
 
         Graph();
@@ -38,7 +40,7 @@ class Graph{
 
         bool isDirected() const;//can be improved 
 
-        bool searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const;
+        
 
         bool pathExists(Node<T> *from, Node<T> *to) const;
 

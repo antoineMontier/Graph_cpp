@@ -20,7 +20,6 @@ class LinkedList{
 
         LinkedList(T content);
 
-
         ~LinkedList();
 
         void push(T content);

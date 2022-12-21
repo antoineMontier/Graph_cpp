@@ -190,6 +190,9 @@ bool Graph<T>::isWeaklyConnected()() const{// a graph is Weakly Connected if it'
 }
 */
 
+
+
+
 template <class T>
 bool Graph<T>::pathExists(Node<T> *from, Node<T> *to) const
 {
@@ -199,43 +202,111 @@ bool Graph<T>::pathExists(Node<T> *from, Node<T> *to) const
         return false;
     if (from == to)
         return true;
-    if(from->neighboursCount() == 0)
+    if (from->neighboursCount() == 0)
         return false;
     // search recursively
     LinkedList<Node<T> *> *unvisited = new LinkedList<Node<T> *>;
     for (int i = 0; i < nodes->size(); i++)
         if (nodes->get(i) != from)
+        {
             unvisited->push(nodes->get(i));
-
+        }
     return searchFrom(from, to, unvisited);
 }
-
-
-
 
 template <class T>
 bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const
 {
-    //std::cout << "search" << endl;
+    // std::cout << "search" << endl;
     if (from == nullptr || to == nullptr)
         return false;
     if (from == to)
+    {
         return true;
-    if(unvisit_list->size() == 0){
+    }
+    if (unvisit_list->size() == 0)
+    {
         delete unvisit_list;
         return false;
     }
-    
-    
-    for (int i = 0 ; i < unvisit_list->size(); i++)
-        if(from->isLinked(unvisit_list->get(i))){
-            //save the node before removing it from the unvisited list
-            Node<T> *temp = unvisit_list->get(i);
-            unvisit_list->remove(temp);
-            if(searchFrom(temp, to, unvisit_list))
+    LinkedList<Node<T> *> *unvisited_bis = new LinkedList<Node<T> *>;
+    for(int i = 0; i < unvisit_list->size(); i++)
+        if(unvisit_list->get(i) != from)
+            unvisited_bis->push(unvisit_list->get(i));
+
+    for (int i = 0; i < unvisited_bis->size(); i++)
+        if (from->isLinked(unvisited_bis->get(i)))
+        {
+            if (searchFrom(unvisited_bis->get(i), to, unvisited_bis) == true)
                 return true;
         }
-        
-    //std::cout << "last false" << endl;
+
+    // std::cout << "last false" << endl;
     return false;
 }
+
+
+
+
+/*
+template <class T>
+bool Graph<T>::pathExists(Node<T> *from, Node<T> *to) const
+{
+    if (from == nullptr || to == nullptr)
+        throw std::invalid_argument("you can't find a path involving a null node");
+    if (!isNodePresent(from) || !isNodePresent(to))
+        return false;
+    if (from == to)
+        return true;
+    if (from->neighboursCount() == 0)
+        return false;
+
+    // search recursively
+    LinkedList<Node<T> *> *unvisited = new LinkedList<Node<T> *>;
+    unvisited->push(from);
+    return searchFrom(from, to, unvisited);
+}
+
+template <class T>
+bool Graph<T>::searchFrom(Node<T> *from, Node<T> *to, LinkedList<Node<T> *> *unvisit_list) const
+{
+    // std::cout << "search" << endl;
+    if (from == nullptr || to == nullptr)
+        return false;
+    if (from == to)
+    {
+        std::cout << "direct true   ";
+        return true;
+    }
+    if (unvisit_list->size() == 0)
+    {
+        delete unvisit_list;
+        return false;
+    }
+
+
+
+    // Update the list of neighbors to include only those
+    // that have not yet been visited
+    LinkedList<Node<T> *> *neighbors = new LinkedList<Node<T> *>;
+    for (int i = 0; i < from->neighboursCount(); i++)
+    {
+        Node<T> *neighbor = from->getNeighbours().get(i);
+        if (!neighbor->visited)
+            neighbors->push(neighbor);
+    }
+
+    // Search for a path from each unvisited neighbor
+    for (int i = 0; i < neighbors->size(); i++)
+    {
+        if (searchFrom(neighbors->get(i), to, unvisit_list))
+        {
+            delete neighbors;
+            return true;
+        }
+    }
+
+    delete neighbors;
+    return false;
+}
+*/
