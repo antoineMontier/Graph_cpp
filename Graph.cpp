@@ -345,3 +345,34 @@ bool Graph<T>::isWeakArticulation(Node<T> * n){//a Node is a weak articulation w
     delete adjList;
     return !still_connected;
 }
+
+template <class T>
+bool Graph<T>::isStrongArticulation(Node<T> * n){//a Node is a weak articulation when if we take it off, then the graph is no more connected
+    if(!isStronglyConnected()) return false;
+    //let's make a copy of the adjacency list of the node
+    LinkedList<Node<T>*> * adjList = new LinkedList<Node<T>*>;
+    for(int i = 0 ; i < n->neighboursCount(); i++)
+        adjList->push((n->getNeighbours())->get(i));
+    //let's make a copy of all the nodes who have the concerned node in their adjacency list
+    LinkedList<Node<T>*> * adjNodeList = new LinkedList<Node<T>*>;
+    for(int i = 0 ; i < nodes->size() ; i++)
+        if(nodes->get(i)->isLinked(n))
+            adjNodeList->push(nodes->get(i));
+            
+    
+
+    //now we disconnect the node from his neighbors
+    n->unlinkAll();
+    //let's remove the node
+    removeNode(n);
+    bool  still_connected = isStronglyConnected();
+    //now we reconnect the node
+    addNode(n);
+    for(int i = 0 ; i < adjList->size(); i++)
+        n->linkTo(adjList->get(i));
+    for(int i = 0 ; i < adjNodeList->size() ; i++)
+        addEdge(adjNodeList->get(i), n);
+    delete adjNodeList;
+    delete adjList;
+    return !still_connected;
+}

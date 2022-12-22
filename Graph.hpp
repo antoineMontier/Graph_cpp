@@ -58,9 +58,9 @@ class Graph{
 
         //bool isForest() const;
 
-        bool isStrongArticulation(Node<T> * n) const;
+        bool isStrongArticulation(Node<T> * n);//const methodes but i modify twice 'this' object so i can't write const
 
-        bool isWeakArticulation(Node<T> * n);
+        bool isWeakArticulation(Node<T> * n);//const methodes but i modify twice 'this' object so i can't write const
 
         //bool isBipartite() const;
 };
