@@ -62,6 +62,8 @@ class Graph{
 
         bool isWeakArticulation(Node<T> * n);//const methodes but i modify twice 'this' object so i can't write const
 
+        bool canBeFlat() const;
+
         //bool isBipartite() const;
 };
 

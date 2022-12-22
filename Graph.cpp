@@ -376,3 +376,8 @@ bool Graph<T>::isStrongArticulation(Node<T> * n){//a Node is a weak articulation
     delete adjList;
     return !still_connected;
 }
+
+template <class T>
+bool Graph<T>::canBeFlat() const{
+    return countEdges() <= (3*nodes->size() - 6);// traditional condition
+}
