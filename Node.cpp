@@ -90,12 +90,13 @@ bool Node<T>::unlink(Node* node){
 
 template <class T>
 void Node<T>::unlinkAll(){
-    for(int i = 0; i < neighboursCount(); i++){
+    if(neighbours->size() == 0) return;
+    for(int i = neighboursCount()-1; i >= 0 ; i--){
         neighbours->pop(i);
     }
 }
 
 template <class T>
-const LinkedList<Node<T> *> Node<T>::getNeighbours() const{
-    return *neighbours;
+const LinkedList<Node<T> *>* Node<T>::getNeighbours() const{
+    return neighbours;
 }

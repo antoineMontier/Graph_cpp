@@ -56,9 +56,11 @@ class Graph{
 
         bool isUndirectedTree() const;
 
-        bool isForest() const;
+        //bool isForest() const;
 
-        //bool isArticulation() const; strong/weak ?
+        bool isStrongArticulation(Node<T> * n) const;
+
+        bool isWeakArticulation(Node<T> * n);
 
         //bool isBipartite() const;
 };

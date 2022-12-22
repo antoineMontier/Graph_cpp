@@ -309,3 +309,39 @@ bool Graph<T>::isUndirectedTree() const{//a graph is an undirected tree if it's 
     return (!isCycle() && isWeaklyConnected()) || (!isCycle() && nodes->size() == countEdges()/2 - 1) || (!isWeaklyConnected() && nodes->size() == countEdges()/2 - 1);//one of the three conditions needs to be filled
 }
 
+template <class T>
+bool Graph<T>::isWeakArticulation(Node<T> * n){//a Node is a weak articulation when if we take it off, then the graph is no more connected
+    if(!isWeaklyConnected()) return false;
+    //std::cout << n->get() << "\n\n\n";
+    //std::cout << " beginning " << n->getNeighbours()->toString() << std::endl;
+    //let's make a copy of the adjacency list of the node
+    LinkedList<Node<T>*> * adjList = new LinkedList<Node<T>*>;
+    for(int i = 0 ; i < n->neighboursCount(); i++)
+        adjList->push((n->getNeighbours())->get(i));
+    //let's make a copy of all the nodes who have the concerned node in their adjacency list
+    LinkedList<Node<T>*> * adjNodeList = new LinkedList<Node<T>*>;
+    for(int i = 0 ; i < nodes->size() ; i++)
+        if(nodes->get(i)->isLinked(n))
+            adjNodeList->push(nodes->get(i));
+            
+    //std::cout << "memory allocation and copy done"<< std::endl;
+    
+
+    //std::cout << " stored as " << adjList->toString() << std::endl;
+    //now we disconnect the node from his neighbors
+    n->unlinkAll();
+    //let's remove the node
+    removeNode(n);
+    //std::cout << " now, adjacent list " << n->getNeighbours()->toString() << std::endl;
+    bool  still_connected = isWeaklyConnected();
+    //now we reconnect the node
+    addNode(n);
+    for(int i = 0 ; i < adjList->size(); i++)
+        n->linkTo(adjList->get(i));
+    for(int i = 0 ; i < adjNodeList->size() ; i++)
+        addEdge(adjNodeList->get(i), n);
+    //std::cout << " end " << n->getNeighbours()->toString() << std::endl;
+    delete adjNodeList;
+    delete adjList;
+    return !still_connected;
+}
