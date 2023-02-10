@@ -9,14 +9,14 @@ int main(){
 
     LinkedList<int> k;
 
-    for(int i=0; i<20 ; i++)
+    for(int i=0; i<10 ; i++)
         k.push(i*i*i % (i + i + 1));
 
     std::cout << k.toString() << std::endl;
 
-    k.swap(11, 7);
+    k.q_sort_rec(0, k.size(), [](int a, int b){return a >= b;});
 
-    std::cout << k.toString() << std::endl;
+    std::cout <<  k.toString() << std::endl;
 
 
 

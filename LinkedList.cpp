@@ -380,9 +380,39 @@ bool LinkedList<T>::removeAll(T obj){
 }
 
 template <class T>
-LinkedList<T> LinkedList<T>::quickSort(std::function <bool(T, T)> comparator){
-
+LinkedList<T> LinkedList<T>::quickSort(std::function <bool(T, T)> comparator)const{
+    LinkedList<T> res;
+    //first let's copy
+    LinkedList<T> * result = new LinkedList<T>();
+    for(int i = 0; i < size(); i++)
+        result->pushTail(get(i));
+    if(res.size() < 2) return res; // already sorted
+    res.q_sort_rec(0, res.size(), comparator);
+    return res;
 }
+template <class T>
+void LinkedList<T>::q_sort_rec(int min, int max, std::function <bool(T, T)> comparator){
+
+        if(min == max) return;
+
+
+        int pivot_index = min;
+        int pivot_value = get(pivot_index);
+        int left = pivot_index + 1;
+        int right = max - 1;
+
+        while (left < right) {
+            while(left < max && !comparator(get(left), pivot_value)) left++;
+            while(comparator(get(right), pivot_value)) right--;
+            if(left < right)swap(left, right);
+        }
+        if (comparator(pivot_value, get(right))) swap(right, pivot_index);
+
+        if(min != right)   q_sort_rec(min, right, comparator);
+        if(max != right+1) q_sort_rec(right+1, max, comparator);
+}
+
+
 
 template <class T>
 bool LinkedList<T>::swap(int index_one, int index_two){

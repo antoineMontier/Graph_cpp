@@ -14,6 +14,7 @@ class LinkedList{
         Cell<T> * head;
         Cell<T> * tail;
 
+
     public:
 
         LinkedList();
@@ -64,7 +65,9 @@ class LinkedList{
 
         const string toString() const;
 
-        LinkedList<T> quickSort(std::function <bool(T, T)> comparator);
+        LinkedList<T> quickSort(std::function <bool(T, T)> comparator)const;
+
+        void q_sort_rec(int min, int max, std::function <bool(T, T)> comparator);
 
         bool swap(int index_one, int index_two);
 
