@@ -64,6 +64,10 @@ class LinkedList{
 
         const string toString() const;
 
+        LinkedList<T> quickSort(std::function <bool(T, T)> comparator);
+
+        bool swap(int index_one, int index_two);
+
 };
 
 
