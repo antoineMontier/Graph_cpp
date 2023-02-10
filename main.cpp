@@ -7,6 +7,25 @@ using namespace std;
 
 int main(){
 
+    LinkedList<int> k;
+
+    for(int i=0; i<20 ; i++)
+        k.push(i*i*i % (i + i + 1));
+
+    std::cout << k.toString() << std::endl;
+
+    k.swap(11, 7);
+
+    std::cout << k.toString() << std::endl;
+
+
+
+
+
+
+
+
+    /*
     Graph<double> g;
     Node<double> n1(1.0);
     Node<double> n2(2.0);
@@ -51,6 +70,8 @@ int main(){
     std::cout << "is n5 a strong articulation point : " << g.isStrongArticulation(&n5) << std::endl;
     std::cout << "is n6 a strong articulation point : " << g.isStrongArticulation(&n6) << std::endl;
     std::cout << "is n7 a strong articulation point : " << g.isStrongArticulation(&n7) << std::endl;
+    */
+
 
     return 0;
 }

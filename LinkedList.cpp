@@ -389,67 +389,10 @@ bool LinkedList<T>::swap(int index_one, int index_two){
     if(index_one < 0 || index_two < 0 || index_one >= size() || index_two >= size()) return false;
     if(index_one == index_two) return true;
 
-    if(index_one == head || index_one == tail || index_two == head || index_two == tail){
-        if((index_one == head && index_two == tail) || (index_one == tail && index_two == head)){
-            Cell<T>* one = head;
-            Cell<T>* two = tail;
-            remove(0);
-            remove(size() - 1);
-            push(two->content());
-            pushTail(one->content());
-        }
+    T content_one = get(index_one);
 
-        if(index_one == head && index_two != tail){
-            Cell<T>* one = head;
-            Cell<T>* before_two = head;
-            Cells<T>* current_two;
-
-            for(int i = 0; i < index_two-1 ; i++)
-                before_two = before_two->getNextPtr();
-            current_two = before_two->getNextPtr();
-            
-            head = head->getNextPtr();
-            remove(0);
-            one->setNextPtr(current_two->getNextPtr());
-            before_two->setNextPtr(one);
-            current_two->setNextPtr(head);
-            head = current_two;
-        }
-
-        if(index_one == tail && index_two != head){
-            Cell<T> * taill = tail;
-            
-        }
-
-        if(index_one != head && index_two == tail)
-
-        if(index_one != tail && index_two == head)
-
-
-
-        return true;
-    }
-
-    Cell<T>* before_one = head;
-    Cell<T>* before_two = head;
-    Cell<T>* current_one;
-    Cells<T>* current_two;
-
-    for(int i = 0; i < index_one-1 ; i++)
-        before_one = before_one->getNextPtr();
-    current_one = before_one->getNextPtr();
-
-    for(int i = 0; i < index_two-1 ; i++)
-        before_two = before_two->getNextPtr();
-    current_two = before_two->getNextPtr();
-
-    before_two->setNextPtr(current_one);
-    before_one->setNextPtr(current_two);
-
-    before_one = current_one->getNextPtr(); // before one becomes after two
-
-    current_one->setNextPtr(current_two->getNextPtr());
-    current_two->setNextPtr(before_one);
+    set(index_one, get(index_two));
+    set(index_two, content_one);
 
     return true;
 
